@@ -8,3 +8,20 @@
 
 <!-- Async Load Main JS -->
 <script src="{{ $main.Permalink }}" async></script>
+
+<!-- Netlify CMS -->
+{{ if .IsHome }}
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+{{ end }}
+
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
