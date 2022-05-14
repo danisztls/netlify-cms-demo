@@ -1,5 +1,4 @@
 ---
-baseURL: http://example.org/
+baseURL: https://fastidious-horse-c883a7.netlify.app
 languageCode: en-us
 title: Netlify CMS Demo
-theme: PaperMod

@@ -1,0 +1,17 @@
+{{ $options := "" }}
+
+{{ if eq (hugo.Environment) "development" }}
+  {{ $options = dict "enableSourceMap" true }}
+{{ else }}
+  {{ $options = dict "outputStyle" "compressed" }}
+{{ end -}}
+
+{{ $main := resources.Get "scss/main.scss" | toCSS $options }}
+
+<!-- Async Load -->
+<link rel="preload" href="{{ $main.Permalink }}" as="style" media="screen" onload="this.onload=null;this.rel='stylesheet'">
+
+<!-- NoJS Fallback -->
+<noscript>
+  <link rel="stylesheet" href="{{ $main.Permalink }}">
+</noscript>
